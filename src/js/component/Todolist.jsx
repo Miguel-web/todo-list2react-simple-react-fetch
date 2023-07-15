@@ -1,4 +1,7 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
+
+const URLBASE = "https://assets.breatheco.de/apis/fake/todos/user"
+
 // https://assets.breatheco.de/apis/fake/todos/user/miguelgilweb
 
 const TodoList = () => {
@@ -7,7 +10,7 @@ const TodoList = () => {
     const handleTask = (event) => {
         setTask(event.target.value); 
     } 
-    const addTask = (event) => {
+    const handlerKeyPress = (event) => {
         if (event.key == 'Enter' && task.trim() !== '') {
             setListTask([...listTask, task]);
             setTask('');
@@ -18,7 +21,7 @@ const TodoList = () => {
     return (
         <div className="text-center text-white d-flex align-items-center gap-3 flex-column">
         <h1>Todo List</h1>
-            <input className="text-dark" type="text" id="task" value={task} onKeyDown={addTask} onChange={handleTask} placeholder=' What needs to be done?'/>  
+            <input className="text-dark" type="text" id="task" value={task} onKeyDown={handlerKeyPress} onChange={handleTask} placeholder=' What needs to be done?'/>  
             <div>
                 <ul>
                 {
